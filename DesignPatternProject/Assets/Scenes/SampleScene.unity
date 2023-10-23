@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2f3a8ef8a2f024880283b9d17deebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnManager: {fileID: 1566456296}
 --- !u!4 &125170855
 Transform:
   m_ObjectHideFlags: 0
@@ -516,11 +517,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: ad16b93b3fb21d347991ee7d04e39034, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &602036962 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8098824804656447353, guid: 3fe23e124fcd21542a71a483995143b4, type: 3}
-  m_PrefabInstance: {fileID: 3966590478457574593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,14 +1366,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac84988fae00ac4382586a0d288e14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToInstantiate: {fileID: 602036962}
+  enemySmallPrefab: {fileID: 6758227227533069018, guid: 95548e2cf41c465458c06d9513713685, type: 3}
+  enemyHeavyPrefab: {fileID: 8096166227226293802, guid: 8695298a8c6288548a76594c1e743f44, type: 3}
   spawnPoints:
   - {fileID: 1465328885}
   - {fileID: 1716733847}
   - {fileID: 354738545}
-  enemies:
-  - {fileID: 8096166227226293802, guid: 8695298a8c6288548a76594c1e743f44, type: 3}
-  - {fileID: 6758227227533069018, guid: 95548e2cf41c465458c06d9513713685, type: 3}
 --- !u!4 &1566456297
 Transform:
   m_ObjectHideFlags: 0

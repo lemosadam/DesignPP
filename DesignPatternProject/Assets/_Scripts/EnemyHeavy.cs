@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHeavy : Enemy
+public class EnemyHeavy : Enemy, IEnemyPrototype
 {
     [SerializeField] protected GameObject attackTarget;
+    private GameObject enemyPrefab;
    
+
+   public void Initialize(GameObject enemyPrefab)
+    {
+        this.enemyPrefab = enemyPrefab;
+    }
+
+    public GameObject Clone(Vector3 position, Quaternion rotation)
+    {
+        return Instantiate(enemyPrefab, position, rotation);
+    }
     // Start is called before the first frame update
     void Start()
     {
