@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1110511316063054638}
   m_Layer: 0
   m_Name: TestHeavy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   currentState: 0
   speed: 1
   isTouchingCore: 0
+  isAttacking: 0
+  detectionRadius: 5
 --- !u!195 &1091854779165969658
 NavMeshAgent:
   m_ObjectHideFlags: 0

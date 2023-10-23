@@ -28,8 +28,8 @@ public class SpawnManager : MonoBehaviour
 
             objectToInstantiate = enemies[randomEnemyIndex];
 
-            float spawnX = selectedSpawnPoint.position.x + Random.Range(-5f, 5f);
-            float spawnZ = selectedSpawnPoint.position.z + Random.Range(-5f, 5f); 
+            float spawnX = selectedSpawnPoint.position.x + Random.Range(-2f, 2f);
+            float spawnZ = selectedSpawnPoint.position.z + Random.Range(-2f, 2f); 
             Vector3 spawnPosition = new Vector3(spawnX, selectedSpawnPoint.position.y, spawnZ);
             Instantiate(objectToInstantiate, spawnPosition, Quaternion.Euler(0f, 180f, 0f));
         }

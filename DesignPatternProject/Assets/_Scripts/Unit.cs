@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    protected float unitHP;
+    public float unitHP;
     protected float unitDamage;
     protected float unitSpeed;
+    protected float timeOfLastAttack = 0f;
+    protected float attackCooldown = 1.5f;
     public enum State
     {
         Idle,
@@ -68,6 +70,11 @@ public abstract class Unit : MonoBehaviour
     protected abstract void Idle();
 
     protected abstract void CoreSplode();
+
+    protected abstract void CheckDistanceToEnemies();
+
     
+
+
 
 }

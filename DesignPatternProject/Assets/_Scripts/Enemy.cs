@@ -10,13 +10,17 @@ public class Enemy : Unit
     protected Transform target;
     public float speed = 1.0f;
     [SerializeField] protected bool isTouchingCore = false;
-    
+    [SerializeField] protected bool isAttacking = false;
+    [SerializeField] protected GameObject attackTarget;
+    public float detectionRadius = 5f;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        unitHP = 10f;
         currentState = State.Idle;
         base.Start();
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -33,7 +37,10 @@ public class Enemy : Unit
     // Update is called once per frame
     void Update()
     {
-
+        if (unitHP <= 0)
+        {
+            Destroy(gameObject);
+        }
         // State machine logic
         switch (currentState)
         {
@@ -137,7 +144,26 @@ public class Enemy : Unit
         }
     }
 
+    protected override void CheckDistanceToEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
 
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
+            if (distance <= detectionRadius)
+            {
+                // You have detected an enemy within the detection radius.
+                // You can add your custom logic here, such as attacking the enemy.
+                // For example, you can call an Attack() function on the enemy or deal damage.
+
+                //isAttacking = true;
+                target = enemy.transform;
+            }
+        }
+    }
+
+    
 
 }

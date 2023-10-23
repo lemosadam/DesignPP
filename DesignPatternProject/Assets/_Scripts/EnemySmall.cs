@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemySmall : Enemy
 {
-   
+    [SerializeField] protected GameObject attackTarget;
     // Start is called before the first frame update
     void Start()
     {
+        unitHP = 50;
         speed = 2f;
         currentState = State.Idle;
         base.Start();
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         playerCore = GameObject.Find("PlayerCore");
         target = GameObject.Find("PlayerCore").transform;
+
         if (playerCore == null)
         {
             Debug.LogError("PlayerCore GameObject not found. Make sure it is named 'PlayerCore' in the scene.");
@@ -25,7 +27,10 @@ public class EnemySmall : Enemy
     // Update is called once per frame
     void Update()
     {
-
+        if (unitHP <= 0)
+        {
+            Destroy(gameObject);
+        }
         // State machine logic
         switch (currentState)
         {
@@ -38,7 +43,7 @@ public class EnemySmall : Enemy
                 break;
 
             case State.Moving:
-
+                CheckDistanceToEnemies();
                 Move();
                 // Transition to "Attacking" state if a condition is met
                 if (isTouchingCore == true)
@@ -47,7 +52,7 @@ public class EnemySmall : Enemy
                     currentState = State.Idle;
                 }
                 // Transition back to "Idle" state if a condition is met
-                else if (Input.GetKeyDown(KeyCode.A))
+                else if (isAttacking == true)
                 {
                     Attack();
                     currentState = State.Attacking;
@@ -55,12 +60,17 @@ public class EnemySmall : Enemy
                 break;
 
             case State.Attacking:
-                // Transition back to "Idle" state if a condition is met
-                if (Input.GetKeyDown(KeyCode.I))
+                if (Time.time - timeOfLastAttack >= attackCooldown)
                 {
-                    Idle();
-                    currentState = State.Idle;
+                    Attack();
+                    timeOfLastAttack = Time.time;
                 }
+                if (attackTarget == null)
+                {
+
+                    currentState = State.Moving;
+                }
+                
                 break;
 
             case State.CoreSplode:
@@ -108,6 +118,15 @@ public class EnemySmall : Enemy
     protected override void Attack()
     {
         Debug.Log("I am Attacking");
+        if (attackTarget != null)
+        {
+            PlayerUnit playerUnit = attackTarget.GetComponent<PlayerUnit>();
+            playerUnit.unitHP = playerUnit.unitHP - 10;
+        }
+        else
+        {
+            Debug.Log("No attack target");
+        }
     }
 
     protected override void Idle()
@@ -126,6 +145,27 @@ public class EnemySmall : Enemy
         if (other.gameObject.CompareTag("PlayerCore"))
         {
             isTouchingCore = true;
+        }
+    }
+
+    protected override void CheckDistanceToEnemies()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject player in players)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+
+            if (distance <= detectionRadius)
+            {
+                // You have detected an enemy within the detection radius.
+                // You can add your custom logic here, such as attacking the enemy.
+                // For example, you can call an Attack() function on the enemy or deal damage.
+
+                isAttacking = true;
+                attackTarget = player;
+                
+            }
         }
     }
 
