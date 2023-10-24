@@ -7,8 +7,10 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject enemySmallPrefab;
     public GameObject enemyHeavyPrefab;
+    
 
     private Dictionary<string, IEnemyPrototype> prototypes = new Dictionary<string, IEnemyPrototype>();
+    
     public Transform[] spawnPoints;
 
     void Start()
@@ -25,6 +27,7 @@ public class SpawnManager : MonoBehaviour
         var enemyHeavyPrototype = new EnemyHeavy();
         enemyHeavyPrototype.Initialize(enemyHeavyPrefab);
         prototypes.Add("EnemyHeavy", enemyHeavyPrototype);
+
     }
 
     public GameObject CreateRandomEnemyClone(Vector3 position, Quaternion rotation)
@@ -58,9 +61,6 @@ public class SpawnManager : MonoBehaviour
             CreateRandomEnemyClone(spawnPosition, Quaternion.Euler(0f, 180f, 0f));
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CreateRandomEnemyClone(new Vector3(0, 0, 0), Quaternion.identity);
-        }
+       
     }
 }

@@ -109,6 +109,7 @@
 -define:ENABLE_UNITY_COLLECTIONS_CHECKS
 -define:ENABLE_BURST_AOT
 -define:UNITY_TEAM_LICENSE
+-define:UNITY_PRO_LICENSE
 -define:ENABLE_CUSTOM_RENDER_TEXTURE
 -define:ENABLE_DIRECTOR
 -define:ENABLE_LOCALIZATION
@@ -361,6 +362,8 @@
 "Assets/_Scripts/EnemySmall.cs"
 "Assets/_Scripts/GameManager.cs"
 "Assets/_Scripts/IEnemyPrototype.cs"
+"Assets/_Scripts/IPlayerPrototype.cs"
+"Assets/_Scripts/PlayerSmall.cs"
 "Assets/_Scripts/PlayerSpawner.cs"
 "Assets/_Scripts/PlayerUnit.cs"
 "Assets/_Scripts/SpawnManager.cs"

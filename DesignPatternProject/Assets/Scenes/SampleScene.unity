@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnManager: {fileID: 1566456296}
+  playerSpawner: {fileID: 2078977786}
 --- !u!4 &125170855
 Transform:
   m_ObjectHideFlags: 0
@@ -1655,6 +1656,9 @@ MonoBehaviour:
   - {fileID: 1240989589}
   playerUnits:
   - {fileID: 6758227227533069018, guid: f4ad67f14ff3d9543977c2c9701f9359, type: 3}
+  playerSmallPrefab: {fileID: 6758227227533069018, guid: f4ad67f14ff3d9543977c2c9701f9359, type: 3}
+  selectedSpawnPoint: {fileID: 0}
+  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &87086834504992808
 NavMeshAgent:
   m_ObjectHideFlags: 0
