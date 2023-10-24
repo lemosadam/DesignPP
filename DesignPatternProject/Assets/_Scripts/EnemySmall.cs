@@ -6,6 +6,8 @@ public class EnemySmall : Enemy, IEnemyPrototype
 {
     private GameObject enemyPrefab;
     [SerializeField] protected GameObject attackTarget;
+
+    //public GameManager gameManager;
     
     public void Initialize(GameObject enemyPrefab)
     {
@@ -31,14 +33,18 @@ public class EnemySmall : Enemy, IEnemyPrototype
             Debug.LogError("PlayerCore GameObject not found. Make sure it is named 'PlayerCore' in the scene.");
         }
 
+        //gameManager = GetComponent<GameManager>();
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (unitHP <= 0)
         {
+            //gameManager.money += 5;
             Destroy(gameObject);
         }
         // State machine logic
