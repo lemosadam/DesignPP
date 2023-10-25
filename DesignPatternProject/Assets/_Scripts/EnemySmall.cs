@@ -33,16 +33,20 @@ public class EnemySmall : Enemy, IEnemyPrototype
             Debug.LogError("PlayerCore GameObject not found. Make sure it is named 'PlayerCore' in the scene.");
         }
 
-        gameManager = GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
 
     }
 
+    private bool IsDead()
+    {
+        return gameObject == null || gameObject.activeSelf == false;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (unitHP <= 0)
+        if (!IsDead() && unitHP <= 0)
         {
-            gameManager.money += 5;
+            gameManager.money += 4;
             Destroy(gameObject);
         }
         // State machine logic

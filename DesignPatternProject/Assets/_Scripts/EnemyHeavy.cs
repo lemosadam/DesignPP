@@ -6,9 +6,10 @@ public class EnemyHeavy : Enemy, IEnemyPrototype
 {
     [SerializeField] protected GameObject attackTarget;
     private GameObject enemyPrefab;
-   
+    public GameManager gameManager;
 
-   public void Initialize(GameObject enemyPrefab)
+
+    public void Initialize(GameObject enemyPrefab)
     {
         this.enemyPrefab = enemyPrefab;
     }
@@ -31,15 +32,20 @@ public class EnemyHeavy : Enemy, IEnemyPrototype
         {
             Debug.LogError("PlayerCore GameObject not found. Make sure it is named 'PlayerCore' in the scene.");
         }
-
+        gameManager = FindObjectOfType<GameManager>();
 
     }
 
+    private bool IsDead()
+    {
+        return gameObject == null || gameObject.activeSelf == false;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (unitHP <= 0)
+        if (!IsDead() && unitHP <= 0)
         {
+            gameManager.money += 7;
             Destroy(gameObject);
         }
         // State machine logic

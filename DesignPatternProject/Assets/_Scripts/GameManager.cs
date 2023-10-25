@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerSpawner playerSpawner;
 
     public TMP_Text moneyText;
-    public float money = 1000;
+    public int money = 30;
     // Start is called before the first frame update
     void Start()
     {
