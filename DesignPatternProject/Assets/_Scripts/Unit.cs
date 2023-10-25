@@ -9,6 +9,7 @@ public abstract class Unit : MonoBehaviour
     protected float unitSpeed;
     protected float timeOfLastAttack = 0f;
     protected float attackCooldown = 1.5f;
+    [SerializeField] protected GameObject attackTarget;
     public enum State
     {
         Idle,

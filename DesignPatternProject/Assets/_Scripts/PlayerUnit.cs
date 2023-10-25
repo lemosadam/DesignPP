@@ -12,9 +12,7 @@ public class PlayerUnit : Unit
     [SerializeField] protected bool isTouchingCore = false;
     [SerializeField] protected bool isAttacking = false;
     public float detectionRadius = 10f;
-    [SerializeField] protected GameObject attackTarget;
-    private float timeOfLastAttack = 0f;
-    private float attackCooldown = 1f;
+
 
 
     // Start is called before the first frame update

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHeavy : Enemy, IEnemyPrototype
 {
-    [SerializeField] protected GameObject attackTarget;
+
     private GameObject enemyPrefab;
     public GameManager gameManager;
 
@@ -21,6 +21,7 @@ public class EnemyHeavy : Enemy, IEnemyPrototype
     // Start is called before the first frame update
     void Start()
     {
+        attackCooldown = 2f;
         unitHP = 100;
         speed = .5f;
         currentState = State.Idle;
@@ -138,7 +139,7 @@ public class EnemyHeavy : Enemy, IEnemyPrototype
         if (attackTarget != null)
         {
             PlayerUnit playerUnit = attackTarget.GetComponent<PlayerUnit>();
-            playerUnit.unitHP = playerUnit.unitHP - 10;
+            playerUnit.unitHP = playerUnit.unitHP - 15;
         }
         else
         {

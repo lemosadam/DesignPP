@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemySmall : Enemy, IEnemyPrototype
 {
     private GameObject enemyPrefab;
-    [SerializeField] protected GameObject attackTarget;
-
     public GameManager gameManager;
     
     public void Initialize(GameObject enemyPrefab)

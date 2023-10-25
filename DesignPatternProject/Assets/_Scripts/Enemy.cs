@@ -11,7 +11,6 @@ public class Enemy : Unit
     public float speed = 1.0f;
     [SerializeField] protected bool isTouchingCore = false;
     [SerializeField] protected bool isAttacking = false;
-    [SerializeField] protected GameObject attackTarget;
     public float detectionRadius = 5f;
 
 

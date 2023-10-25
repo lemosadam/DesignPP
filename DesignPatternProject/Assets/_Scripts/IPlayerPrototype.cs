@@ -4,7 +4,7 @@ using UnityEngine;
 
     public interface IPlayerPrototype
     {
-        void Initialize(GameObject enemyPrefab);
+        void Initialize(GameObject playerPrefab);
         GameObject Clone(Vector3 position, Quaternion rotation);
     }
 

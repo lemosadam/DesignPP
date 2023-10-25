@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-
-    public GameObject objectToInstantiate;
     public Transform[] spawnPoints;
-    public GameObject[] playerUnits;
     public GameObject playerSmallPrefab;
+    public GameObject playerHeavyPrefab;
     private Dictionary<string, IPlayerPrototype> playerPrototypes = new Dictionary<string, IPlayerPrototype>();
     [SerializeField] protected Transform selectedSpawnPoint;
     public Vector3 spawnPosition;
+    public GameManager gameManager;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         InitializePlayerPrototypes();
     }
 
@@ -23,12 +23,29 @@ public class PlayerSpawner : MonoBehaviour
         var playerSmallPrototype = new PlayerSmall();
         playerSmallPrototype.Initialize(playerSmallPrefab);
         playerPrototypes.Add("PlayerSmall", playerSmallPrototype);
+
+        var playerHeavyPrototype = new PlayerHeavy();
+        playerHeavyPrototype.Initialize(playerHeavyPrefab);
+        playerPrototypes.Add("PlayerHeavy", playerHeavyPrototype);
     }
     public GameObject CreatePlayerSmallClone(Vector3 spawnPosition, Quaternion rotation)
     {
         if (playerPrototypes.ContainsKey("PlayerSmall"))
         {
             return playerPrototypes["PlayerSmall"].Clone(spawnPosition, rotation);
+        }
+        else
+        {
+            Debug.LogError("Key: PlayerSmall not found in dictionary.");
+            return null;
+        }
+    }
+
+    public GameObject CreatePlayerHeavyClone(Vector3 spawnPosition, Quaternion rotation)
+    {
+        if (playerPrototypes.ContainsKey("PlayerHeavy"))
+        {
+            return playerPrototypes["PlayerHeavy"].Clone(spawnPosition, rotation);
         }
         else
         {
@@ -84,5 +101,17 @@ public class PlayerSpawner : MonoBehaviour
         float spawnX = selectedSpawnPoint.position.x + Random.Range(-3f, 3f);
         float spawnZ = selectedSpawnPoint.position.z + Random.Range(-3f, 3f);
         spawnPosition = new Vector3(spawnX, selectedSpawnPoint.position.y, spawnZ);
+    }
+
+    public void SpawnPlayerSmall()
+    {
+        gameManager.money -= 3;
+        CreatePlayerSmallClone(spawnPosition, Quaternion.identity);
+    }
+
+    public void SpawnPlayerHeavy()
+    {
+        gameManager.money -= 10;
+        CreatePlayerHeavyClone(spawnPosition, Quaternion.identity);
     }
 }
