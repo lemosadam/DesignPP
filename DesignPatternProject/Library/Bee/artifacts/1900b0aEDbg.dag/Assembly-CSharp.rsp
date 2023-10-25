@@ -362,6 +362,7 @@
 "Assets/_Scripts/GameManager.cs"
 "Assets/_Scripts/IEnemyPrototype.cs"
 "Assets/_Scripts/IPlayerPrototype.cs"
+"Assets/_Scripts/PlayerHeavy.cs"
 "Assets/_Scripts/PlayerSmall.cs"
 "Assets/_Scripts/PlayerSpawner.cs"
 "Assets/_Scripts/PlayerUnit.cs"
